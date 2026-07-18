@@ -87,9 +87,11 @@
   .hero{
     position:relative;overflow:hidden;
     background:
-      radial-gradient(circle 320px at 88% 12%, var(--blob1), transparent 70%),
-      radial-gradient(circle 200px at 8% 90%, var(--blob2), transparent 70%),
-      var(--ground);
+      linear-gradient(180deg,
+        color-mix(in srgb, var(--ground) 55%, transparent) 0%,
+        color-mix(in srgb, var(--ground) 68%, transparent) 60%,
+        var(--ground) 100%),
+      url('beach.jpg') center/cover var(--ground);
   }
   .hero .wrap{padding-top:72px;padding-bottom:80px;position:relative}
   .eyebrow{
