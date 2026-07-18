@@ -29,26 +29,9 @@
     --display:"Fraunces",Georgia,"Times New Roman",serif;
     --body:"Karla",-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
   }
-  @media (prefers-color-scheme: dark){
-    :root{
-      --ground:#0A2430; --panel:#11303E; --ink:#EAF4F7; --ink-soft:#9FBECA;
-      --lagoon:#3FB4DC; --lagoon-deep:#2F93B7; --seafoam:#7FD8E3; --seafoam-soft:#0F3542;
-      --fizz:#F76FA0; --fizz-deep:#F0568F; --gold:#E0BC4A; --line:#1C4356;
-      --blob1:transparent; --blob2:transparent;
-    }
-  }
-  :root[data-theme="light"]{
-    --ground:#FCF8F1; --panel:#FFFFFF; --ink:#14384A; --ink-soft:#4E6B7A;
-    --lagoon:#1787B8; --lagoon-deep:#116A92; --seafoam:#7FD8E3; --seafoam-soft:#E3F4F8;
-    --fizz:#F0568F; --fizz-deep:#D63E77; --gold:#C9A227; --line:#E7DFD2;
-    --blob1:rgba(127,216,227,.38); --blob2:rgba(240,86,143,.16);
-  }
-  :root[data-theme="dark"]{
-    --ground:#0A2430; --panel:#11303E; --ink:#EAF4F7; --ink-soft:#9FBECA;
-    --lagoon:#3FB4DC; --lagoon-deep:#2F93B7; --seafoam:#7FD8E3; --seafoam-soft:#0F3542;
-    --fizz:#F76FA0; --fizz-deep:#F0568F; --gold:#E0BC4A; --line:#1C4356;
-    --blob1:transparent; --blob2:transparent;
-  }
+  /* Single bright beach theme — the site stays sunny even when the visitor's
+     device is in dark mode. */
+  html{color-scheme:light}
   *{box-sizing:border-box;margin:0;padding:0}
   html{scroll-behavior:smooth}
   @media (prefers-reduced-motion: reduce){
@@ -224,7 +207,12 @@
   }
   .step h3{font-family:var(--display);font-weight:600;font-size:1.2rem;margin-bottom:8px}
   .step p{color:var(--ink-soft);font-size:.97rem}
-  .price-note{margin-top:26px;color:var(--ink-soft);font-size:.95rem}
+  .unicorn-note{
+    margin-top:26px;background:var(--seafoam-soft);border:1px solid var(--seafoam);
+    border-radius:14px;padding:16px 22px;font-size:1.05rem;
+  }
+  .unicorn-note strong{color:var(--fizz-deep)}
+  .price-note{margin-top:16px;color:var(--ink-soft);font-size:.95rem}
   .price-note strong{color:var(--gold)}
 
   /* ---------- shop ---------- */
@@ -403,9 +391,10 @@
         </div>
         <div class="step">
           <h3>It ships to your door</h3>
-          <p>Your pieces ship right to you. And here's the thrill: <strong>rare, ultra rare, and diamonds are hiding in EVERY collection!</strong> 🦄💎</p>
+          <p>Your pieces ship right to you, ready to wear or gift — and every reveal is the real deal from Bomb Party's latest collections.</p>
         </div>
       </div>
+      <p class="unicorn-note">🦄 Unicorns: <strong>rare, ultra rare and diamonds are hiding in EVERY collection!</strong> 💎</p>
       <p class="price-note">Reveals start at <strong>$24.95</strong> with pieces valued up to $3,500. New limited collections drop monthly — and they don't come back. Not sure of your ring size? <a href="https://www.alexmakina.com/how-to-measure-ring-size">Here's how to measure at home</a>.</p>
     </div>
   </section>
