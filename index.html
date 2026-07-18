@@ -210,12 +210,30 @@
   }
   .step h3{font-family:var(--display);font-weight:600;font-size:1.2rem;margin-bottom:8px}
   .step p{color:var(--ink-soft);font-size:.97rem}
+  .how-split{
+    display:grid;grid-template-columns:260px 1fr;gap:40px;align-items:center;
+    margin-top:8px;
+  }
+  .how-split + .how-split{margin-top:40px}
+  .how-split.reverse{grid-template-columns:1fr 260px}
+  .how-split.reverse .how-gal{order:2}
+  .how-gal{
+    width:100%;max-width:280px;justify-self:center;
+    filter:drop-shadow(0 16px 30px rgba(18,53,67,.14));
+  }
+  .how-split .steps{margin-top:0}
+  .hook-stack{display:flex;flex-direction:column;gap:16px}
+  @media (max-width:720px){
+    .how-split, .how-split.reverse{grid-template-columns:1fr}
+    .how-split.reverse .how-gal{order:0}
+    .how-gal{max-width:200px}
+  }
   .unicorn-note{
-    margin-top:26px;background:var(--seafoam-soft);border:1px solid var(--seafoam);
+    background:var(--seafoam-soft);border:1px solid var(--seafoam);
     border-radius:14px;padding:16px 22px;font-size:1.05rem;
   }
   .unicorn-note strong{color:var(--fizz-deep)}
-  .price-note{margin-top:16px;color:var(--ink-soft);font-size:.95rem}
+  .price-note{color:var(--ink-soft);font-size:.95rem}
   .price-note .big-value{
     color:var(--fizz-deep);font-family:var(--display);font-size:1.25em;font-weight:700;
     white-space:nowrap;
@@ -387,22 +405,32 @@
       <p class="eyebrow">New Here?</p>
       <h2>How a surprise jewelry reveal works</h2>
       <p class="section-intro">It's part shopping, part game show. Here's the whole thing in three steps.</p>
-      <div class="steps">
-        <div class="step">
-          <h3>Pick your size &amp; collection</h3>
-          <p>Choose your ring size and the collection you love — what's inside stays a surprise until it's opened.</p>
-        </div>
-        <div class="step">
-          <h3>Watch it opened live</h3>
-          <p>I open your reveal on camera during a live. Nobody — not even me — knows what's inside until that moment. That's the fun.</p>
-        </div>
-        <div class="step">
-          <h3>It ships to your door</h3>
-          <p>Your pieces ship right to you, ready to wear or gift — and every reveal is the real deal from Bomb Party's latest collections.</p>
+
+      <div class="how-split">
+        <img class="how-gal" src="woman_surprised.png" alt="Delighted woman gasping as she opens a jewelry box" loading="lazy">
+        <div class="steps">
+          <div class="step">
+            <h3>Pick your size &amp; collection</h3>
+            <p>Choose your ring size and the collection you love — what's inside stays a surprise until it's opened.</p>
+          </div>
+          <div class="step">
+            <h3>Watch it opened live</h3>
+            <p>I open your reveal on camera during a live. Nobody — not even me — knows what's inside until that moment. That's the fun.</p>
+          </div>
+          <div class="step">
+            <h3>It ships to your door</h3>
+            <p>Your pieces ship right to you, ready to wear or gift — and every reveal is the real deal from Bomb Party's latest collections.</p>
+          </div>
         </div>
       </div>
-      <p class="unicorn-note">🦄 <strong>Rare, Ultra Rare, and Diamonds are hiding in EVERY collection!</strong> You never know which reveal is holding one.</p>
-      <p class="price-note">Reveals start at just <strong>$24.95</strong> — with pieces valued up to <strong class="big-value">$3,500</strong>. 💎 New limited collections drop monthly, and once they're gone, they're gone. Not sure of your ring size? <a href="https://www.alexmakina.com/how-to-measure-ring-size">Here's how to measure at home</a>.</p>
+
+      <div class="how-split reverse">
+        <img class="how-gal" src="woman_happy.png" alt="Overjoyed woman cheering with a sparkling ring in her hand" loading="lazy">
+        <div class="hook-stack">
+          <p class="unicorn-note">🦄 <strong>Rare, Ultra Rare, and Diamonds are hiding in EVERY collection!</strong> You never know which reveal is holding one.</p>
+          <p class="price-note">Reveals start at just <strong>$24.95</strong> — with pieces valued up to <strong class="big-value">$3,500</strong>. 💎 New limited collections drop monthly, and once they're gone, they're gone. Not sure of your ring size? <a href="https://www.alexmakina.com/how-to-measure-ring-size">Here's how to measure at home</a>.</p>
+        </div>
+      </div>
     </div>
   </section>
 
