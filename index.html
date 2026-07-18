@@ -12,18 +12,18 @@
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600;9..144,700&family=Karla:wght@400;500;700&display=swap" rel="stylesheet">
 <style>
   :root{
-    --ground:#FCF8F1;
+    --ground:#FFFFFF;
     --panel:#FFFFFF;
-    --ink:#14384A;
-    --ink-soft:#4E6B7A;
-    --lagoon:#1787B8;
-    --lagoon-deep:#116A92;
-    --seafoam:#7FD8E3;
-    --seafoam-soft:#E3F4F8;
+    --ink:#123543;
+    --ink-soft:#5A7481;
+    --lagoon:#1E93C4;
+    --lagoon-deep:#137299;
+    --seafoam:#9FE0E6;
+    --seafoam-soft:#EEF8FA;
     --fizz:#F0568F;
     --fizz-deep:#D63E77;
     --gold:#C9A227;
-    --line:#E7DFD2;
+    --line:#EAE3D7;
     --blob1:rgba(127,216,227,.38);
     --blob2:rgba(240,86,143,.16);
     --display:"Fraunces",Georgia,"Times New Roman",serif;
@@ -71,10 +71,13 @@
     position:relative;overflow:hidden;
     background:
       linear-gradient(180deg,
-        color-mix(in srgb, var(--ground) 55%, transparent) 0%,
-        color-mix(in srgb, var(--ground) 68%, transparent) 60%,
-        var(--ground) 100%),
-      url('beach.jpg') center/cover var(--ground);
+        rgba(255,255,255,.30) 0%,
+        rgba(255,255,255,.44) 55%,
+        rgba(255,255,255,.92) 100%),
+      url('beach.jpg') center/cover #EEF8FA;
+  }
+  .hero .lede, .hero .eyebrow{
+    text-shadow:0 1px 10px rgba(255,255,255,.7);
   }
   .hero .wrap{padding-top:72px;padding-bottom:80px;position:relative}
   .eyebrow{
@@ -213,6 +216,10 @@
   }
   .unicorn-note strong{color:var(--fizz-deep)}
   .price-note{margin-top:16px;color:var(--ink-soft);font-size:.95rem}
+  .price-note .big-value{
+    color:var(--fizz-deep);font-family:var(--display);font-size:1.25em;font-weight:700;
+    white-space:nowrap;
+  }
   .price-note strong{color:var(--gold)}
 
   /* ---------- shop ---------- */
@@ -394,8 +401,8 @@
           <p>Your pieces ship right to you, ready to wear or gift — and every reveal is the real deal from Bomb Party's latest collections.</p>
         </div>
       </div>
-      <p class="unicorn-note">🦄 Unicorns: <strong>rare, ultra rare and diamonds are hiding in EVERY collection!</strong> 💎</p>
-      <p class="price-note">Reveals start at <strong>$24.95</strong> with pieces valued up to $3,500. New limited collections drop monthly — and they don't come back. Not sure of your ring size? <a href="https://www.alexmakina.com/how-to-measure-ring-size">Here's how to measure at home</a>.</p>
+      <p class="unicorn-note">🦄 <strong>Rare, Ultra Rare, and Diamonds are hiding in EVERY collection!</strong> You never know which reveal is holding one.</p>
+      <p class="price-note">Reveals start at just <strong>$24.95</strong> — with pieces valued up to <strong class="big-value">$3,500</strong>. 💎 New limited collections drop monthly, and once they're gone, they're gone. Not sure of your ring size? <a href="https://www.alexmakina.com/how-to-measure-ring-size">Here's how to measure at home</a>.</p>
     </div>
   </section>
 
