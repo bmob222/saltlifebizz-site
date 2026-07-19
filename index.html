@@ -559,11 +559,15 @@
 
     function nextLive(){
       var now = new Date(), best = null, bestLabel = "";
+      // Special events take priority: if one is upcoming, feature it (the soonest)
+      // until it passes, then fall back to the recurring schedule.
       SPECIAL.forEach(function(e){
         var p = e.iso.split(/[-T:]/);
         var t = etWall(+p[0], +p[1]-1, +p[2], +p[3], +p[4]);
         if (t > now && (!best || t < best)){ best = t; bestLabel = e.label; }
       });
+      if (best){ return {t:best, label:bestLabel}; }
+      // No special pending → next recurring live.
       for (var i=0; i<9; i++){
         var probe = new Date(now.getTime() + i*86400000);
         var ymd = probe.toLocaleDateString('en-CA', {timeZone:'America/New_York'}).split('-');
