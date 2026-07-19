@@ -240,6 +240,23 @@
   }
   .price-note strong{color:var(--gold)}
 
+  /* ---------- live love (social proof) ---------- */
+  .proof-grid{
+    display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));
+    gap:18px;align-items:start;
+  }
+  .proof{margin:0}
+  .proof img{
+    width:100%;display:block;border-radius:16px;border:1px solid var(--line);
+    box-shadow:0 10px 30px rgba(14,60,66,.10);
+  }
+  .proof.chat img{background:#101014;border-color:#22222a}
+  .proof figcaption{
+    margin-top:10px;font-size:.85rem;color:var(--ink-soft);
+    text-transform:uppercase;letter-spacing:.1em;font-weight:700;text-align:center;
+  }
+  .proof-note{margin-top:26px;color:var(--ink-soft);font-size:.9rem;text-align:center}
+
   /* ---------- shop ---------- */
   .shop-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:18px}
   .shop-card{
@@ -442,7 +459,50 @@
     </div>
   </section>
 
-  <section class="alt" id="shop">
+  <section class="alt" id="love">
+    <div class="wrap">
+      <p class="eyebrow">Live Reactions</p>
+      <h2>Straight from the live chat</h2>
+      <p class="section-intro">Nothing staged — these are real reveals and real comments rolling in while Tracy opens on TikTok Live.</p>
+      <div class="proof-grid">
+        <figure class="proof">
+          <img src="live_ring.jpg" alt="Sparkling ring revealed on a display cone during a Salt Life Fizz live">
+          <figcaption>The ring that set chat off</figcaption>
+        </figure>
+        <figure class="proof chat">
+          <img src="chat_ring.png" alt="Live chat reacting to the ring reveal: omgoodness love, Wowzer, love that">
+          <figcaption>Chat during the reveal</figcaption>
+        </figure>
+        <figure class="proof">
+          <img src="live_peardrop.jpg" alt="Rose gold peardrop necklace revealed on a Salt Life Fizz live">
+          <figcaption>The peardrop everyone wanted</figcaption>
+        </figure>
+        <figure class="proof chat">
+          <img src="chat_peardrop.png" alt="Live chat reacting to the necklace: oh I love that peardrop, Wowwww I die, picker is fire">
+          <figcaption>&ldquo;Picker is fire!!&rdquo;</figcaption>
+        </figure>
+        <figure class="proof">
+          <img src="live_pink_ring.jpg" alt="Pink pear-stone ring with a crystal wave band, worn moments after the reveal">
+          <figcaption>Worn the second it&rsquo;s opened</figcaption>
+        </figure>
+        <figure class="proof chat">
+          <img src="chat_love.png" alt="Live chat full of love: Wow, ooh love, love love, love that">
+          <figcaption>The love wall</figcaption>
+        </figure>
+        <figure class="proof">
+          <img src="live_gold_ring.jpg" alt="Gold ring with coral center stone and crystal halo, shown on the hand">
+          <figcaption>Straight out of the fizz</figcaption>
+        </figure>
+        <figure class="proof">
+          <img src="live_reveal_smile.jpg" alt="Tracy smiling behind a crystal leaf ring on a display cone">
+          <figcaption>That reveal smile</figcaption>
+        </figure>
+      </div>
+      <p class="proof-note">Screenshots from a recent TikTok live. Want in on the next one? <a href="#lives">Check the schedule</a>.</p>
+    </div>
+  </section>
+
+  <section id="shop">
     <div class="wrap">
       <p class="eyebrow">Shop</p>
       <h2>Shop the jewelry</h2>
@@ -490,7 +550,7 @@
     </div>
   </section>
 
-  <section id="about">
+  <section class="alt" id="about">
     <div class="wrap">
       <p class="eyebrow">About</p>
       <h2>Hi, I'm Tracy 🌊</h2>
