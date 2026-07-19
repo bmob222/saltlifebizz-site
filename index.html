@@ -301,7 +301,7 @@
       <div class="live-chip" id="liveChip">
         <span class="pulse" aria-hidden="true"></span>
         <div>
-          <strong>Next live party:</strong> <span id="nextLiveLabel">Obsidia Pre-Order — Tue July 21, 5:30 PM ET</span>
+          <strong>Next live:</strong> <span id="nextLiveLabel">Loading the schedule…</span>
           <span class="count" id="countdown"></span>
         </div>
       </div>
@@ -524,26 +524,79 @@
 </footer>
 
 <script>
-  // Countdown to the next scheduled live party.
-  // To change it, edit the date below (year, month-1, day, hour, minute) — times are Eastern.
+  // ── Auto-updating "next live" countdown ──
+  // It figures out the next live by itself from the weekly schedule below, so it
+  // NEVER goes stale. All times are Eastern (auto-adjusts for daylight saving).
+  //
+  // TO EDIT: change RECURRING for the regular weekly schedule (day: 0=Sun … 6=Sat).
+  // For one-off events (like a pre-order), add a line to SPECIAL with the date/time;
+  // once it passes it's ignored automatically — no need to delete it right away.
   (function(){
-    var target = new Date("2026-07-21T17:30:00-04:00"); // Obsidia Pre-Order
+    var RECURRING = [
+      {day:6, h:11, m:0,  label:"Hour of Power (weekend Q&A)"},
+      {day:0, h:11, m:0,  label:"Hour of Power (weekend Q&A)"},
+      {day:6, h:13, m:0,  label:"Weekend Reveal Live"},
+      {day:0, h:13, m:0,  label:"Weekend Reveal Live"},
+      {day:3, h:17, m:30, label:"Reveal Live"},
+      {day:4, h:17, m:30, label:"Reveal Live"},
+      {day:5, h:17, m:30, label:"Reveal Live"}
+    ];
+    var SPECIAL = [
+      {iso:"2026-07-21T17:30", label:"Obsidia Pre-Order"}
+    ];
+
     var count = document.getElementById("countdown");
     var label = document.getElementById("nextLiveLabel");
-    function tick(){
-      var ms = target - new Date();
-      if (ms <= 0){
-        label.textContent = "We're LIVE (or just wrapped) — come find us!";
-        count.textContent = "";
-        return;
-      }
-      var d = Math.floor(ms/864e5),
-          h = Math.floor(ms%864e5/36e5),
-          m = Math.floor(ms%36e5/6e4);
-      count.textContent = " · in " + (d>0 ? d+"d " : "") + h + "h " + m + "m";
-      setTimeout(tick, 30000);
+
+    // Build a real instant from a wall-clock time in America/New_York (DST-correct).
+    function etWall(y, mon0, day, h, min){
+      var utc = Date.UTC(y, mon0, day, h, min);
+      var s = new Date(utc).toLocaleString('en-US', {timeZone:'America/New_York', timeZoneName:'shortOffset'});
+      var mm = s.match(/GMT([+-]\d+)(?::(\d+))?/);
+      var offMin = mm ? (parseInt(mm[1],10)*60 + (mm[1][0]==='-'?-1:1)*(mm[2]?+mm[2]:0)) : -240;
+      return new Date(utc - offMin*60000);
     }
-    tick();
+
+    function nextLive(){
+      var now = new Date(), best = null, bestLabel = "";
+      SPECIAL.forEach(function(e){
+        var p = e.iso.split(/[-T:]/);
+        var t = etWall(+p[0], +p[1]-1, +p[2], +p[3], +p[4]);
+        if (t > now && (!best || t < best)){ best = t; bestLabel = e.label; }
+      });
+      for (var i=0; i<9; i++){
+        var probe = new Date(now.getTime() + i*86400000);
+        var ymd = probe.toLocaleDateString('en-CA', {timeZone:'America/New_York'}).split('-');
+        var wd = new Date(+ymd[0], +ymd[1]-1, +ymd[2]).getDay();
+        RECURRING.forEach(function(s){
+          if (s.day !== wd) return;
+          var t = etWall(+ymd[0], +ymd[1]-1, +ymd[2], s.h, s.m);
+          if (t > now && (!best || t < best)){ best = t; bestLabel = s.label; }
+        });
+      }
+      return {t:best, label:bestLabel};
+    }
+
+    function fmt(ms){
+      var d = Math.floor(ms/864e5), h = Math.floor(ms%864e5/36e5), m = Math.floor(ms%36e5/6e4);
+      return (d>0 ? d+"d " : "") + h + "h " + m + "m";
+    }
+
+    function render(){
+      var n = nextLive();
+      if (!n.t){ label.textContent = "Follow on TikTok for the next live!"; count.textContent = ""; return; }
+      var ms = n.t - new Date();
+      var when = n.t.toLocaleString('en-US', {timeZone:'America/New_York', weekday:'short', month:'short', day:'numeric', hour:'numeric', minute:'2-digit'}) + " ET";
+      if (ms > 0 && ms <= 90*60000){
+        label.textContent = n.label + " — starting soon! 🔴";
+        count.textContent = "";
+      } else {
+        label.textContent = n.label + " · " + when;
+        count.textContent = ms > 0 ? (" · in " + fmt(ms)) : "";
+      }
+      setTimeout(render, 30000);
+    }
+    render();
   })();
 </script>
 
